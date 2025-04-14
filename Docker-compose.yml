@@ -1,0 +1,18 @@
+services:
+  # Servicio para tu aplicación Spring Boot
+  mi-spring-app:
+    build: . # Construye usando el Dockerfile local
+    container_name: mi-springboot-container
+    ports:
+      - "8090:8080" # Host:Container (Tomcat)
+    restart: unless-stopped
+    environment:
+      # Variable estándar de Spring Boot para la URI de conexión de MongoDB
+      # Docker Compose reemplazará 'mongo' con la IP del contenedor de MongoDB en la red.
+      # ¡Es MEJOR configurar esto en la UI de Coolify como secreto!
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://sena:fullsena@servidor.qg8hj.mongodb.net/rogercorp?retryWrites=true&w=majority&appName=SERVIDOR # Reemplaza nombre_tu_db
+      - SPRING_PROFILES_ACTIVE=prod # O el perfil que uses
+
+
+volumes:
+  mongodb_data: {} # Define el volumen para los datos de MongoDB
