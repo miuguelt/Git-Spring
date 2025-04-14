@@ -1,7 +1,10 @@
 services:
   # Servicio para tu aplicación Spring Boot
   mi-spring-app:
-    build: . # Construye usando el Dockerfile local
+    image: 'tomcat:latest '
+    build:
+      context: 'https://github.com/miuguelt/fincaVillaLuz-main.git'
+      dockerfile: Dockerfile
     container_name: mi-springboot-container
     ports:
       - "8090:8080" # Host:Container (Tomcat)
